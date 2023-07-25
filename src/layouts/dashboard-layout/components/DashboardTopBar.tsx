@@ -15,6 +15,5 @@ function DashboardTopBar() {
     )
 }
 
-export const name="imran"
 
 export default DashboardTopBar

@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 function Dashboard() {
   const [open, setopen] = useState(false)
   const [data, setdata] = useState<string[]>([])
+  const [checked, setchecked] = useState<boolean>(false)
   const ref1 = useRef<InputRef>(null)
 
   const ismodalopen = () => {
@@ -17,6 +18,7 @@ function Dashboard() {
   const oncancelhandler = () => {
     setopen(false)
   }
+  
   const id = Date.now()
 
   const addTodo = () => {
@@ -56,16 +58,15 @@ function Dashboard() {
         </Modal>
       </div>
       <div className="flex justify-center mb-[100px]">
-        <Card className="flex  w-[600px] h-[400px]  bg-gray-300 ml-400">
+        <Card className="flex  w-[600px] h-[400px]  bg-gray-300 ml-400 rounded-md">
           <List
-
             dataSource={data}
             renderItem={(item) => (
               <List.Item
-                className="w-full h-full "
+                className="w-full h-full"
               >
-                <div className="bg-gray-500 p-2">
-                  <Checkbox className="text-white text-xl p-2">{item}</Checkbox>
+                <div className="bg-slate-50 p-2">
+                  <Checkbox className=" text-xl p-2" onChange={(() => setchecked(true))}>{checked ? <del>{item}</del> : item}</Checkbox>
                   <Button type="primary" danger>Delete</Button>
                 </div>
               </List.Item>
