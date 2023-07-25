@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Divider, Input, InputRef, List, Modal, Typography } from "antd";
+import { Button, Card, Checkbox, Divider, Input, InputRef, List, Modal, Rate, Typography } from "antd";
 import { useRef, useState } from "react";
 
 function Dashboard() {
@@ -6,6 +6,7 @@ function Dashboard() {
   const [data, setdata] = useState<string[]>([])
   const [checked, setchecked] = useState<boolean>(false)
   const ref1 = useRef<InputRef>(null)
+  const desc = ["terrible","bad","normal","good","wonderful"]
 
   const ismodalopen = () => {
     setopen(true)
@@ -18,7 +19,7 @@ function Dashboard() {
   const oncancelhandler = () => {
     setopen(false)
   }
-  
+
   const id = Date.now()
 
   const addTodo = () => {
@@ -66,8 +67,9 @@ function Dashboard() {
                 className="w-full h-full"
               >
                 <div className="bg-slate-50 p-2">
-                  <Checkbox className=" text-xl p-2" onChange={(() => setchecked(true))}>{checked ? <del>{item}</del> : item}</Checkbox>
+                  <Checkbox className=" text-xl p-2" checked={checked} onChange={(() => setchecked(true))}>{checked ? <del>{item}</del> : item}</Checkbox>
                   <Button type="primary" danger>Delete</Button>
+                  <Rate value={3} defaultValue={1} className="ml-10" tooltips={desc} />
                 </div>
               </List.Item>
             )}
