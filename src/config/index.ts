@@ -6,3 +6,5 @@ export const FIREBASE_CONFIG = {
     messagingSenderId: process.env.FIREBASE_MESSAGIN_SENDER_ID,
     appId: process.env.FIREBASE_APP_ID
 };
+
+export const BASE_URL=process.env.BASE_URL

@@ -1,5 +1,6 @@
 import { firebaseAuth } from "@src/services";
 import { AuthContextType, LoginProps, SignupProps } from "@src/types";
+import { removeAxiosToken, setaxiostoken } from "@src/utils/axios";
 import {
     User,
     signInWithEmailAndPassword,
@@ -45,15 +46,20 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const checkAuth = useCallback(() => {
         onAuthStateChanged(firebaseAuth, async (_user) => {
-            console.log("🚀 ~ file: AuthContext.tsx:46 ~ onAuthStateChanged ~ _user:", _user)
+            console.log("🚀 ~ file: AuthContext.tsx:48 ~ onAuthStateChanged ~ _user:", _user)
             setLoading(true)
             setUser(_user)
             setIsAuthenticated(!!_user)
             if (_user) {
+
                 const _token = await _user?.getIdToken();
+                if(_token){
+                    setaxiostoken(_token)
+                }
                 setToken(_token)
             } else {
                 setToken(null)
+                removeAxiosToken()
             }
             setLoading(false)
         })

@@ -1,6 +1,6 @@
 import { Layout } from 'antd'
 import React, { ReactNode } from 'react'
-import { DashboardTopBar } from './components'
+import { DashboardSideBar, DashboardTopBar } from './components'
 import { AuthGuard } from '@src/guards'
 
 const { Content } = Layout
@@ -13,11 +13,14 @@ function DashboardLayout(props: DashboardLayoutProps) {
     const { children } = props
 
     return (
-        <Layout>
+        <Layout className='h-full'>
             <DashboardTopBar />
-            <Content>
-                {children}
-            </Content>
+            <Layout>
+                <DashboardSideBar />
+                <Content>
+                    {children}
+                </Content>
+            </Layout>
         </Layout>
     )
 }

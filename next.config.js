@@ -8,6 +8,7 @@ const nextConfig = {
     FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
     FIREBASE_MESSAGIN_SENDER_ID: process.env.FIREBASE_MESSAGIN_SENDER_ID,
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
+    BASE_URL: process.env.BASE_URL,
   }
 }
 
