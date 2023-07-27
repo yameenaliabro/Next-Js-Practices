@@ -1,16 +1,28 @@
-import { CreateTodosType, GetTodosType, ITodo } from "@src/types/todo"
+import { CreateTodosType, DeleteTodoType, EditTodoType, GetTodoDetailType, ITodo } from "@src/types/todo"
 import axios from "@src/utils/axios"
 import { useMutation, useQuery } from "@tanstack/react-query"
 
-export const useGetTodos = (props?: GetTodosType) => {
+export const UseGetTodos = () => useQuery<ITodo[], string>({
+    queryKey: ["todos"],
+    queryFn: async () => (await axios.get("/todos")).data
+})
+
+export const UseGetTodoDetail = (props?: GetTodoDetailType) => {
     const { id } = props || {}
-    const query = useQuery<ITodo[], string>({
-        queryKey: ["todos", id],
-        queryFn: async () => (await axios.get("/todos")).data
+    return useQuery<ITodo, string>({
+        queryKey: ["todo", id],
+        queryFn: async () => (await axios.get("/todos", { params: { id } })).data
     })
-    return query;
 }
 
 export const useCreateTodo = () => useMutation<void, string, CreateTodosType>({
     mutationFn: async (props) => axios.post("/todos", props)
+})
+
+export const useEditTodo = () => useMutation<void, string, EditTodoType>({
+    mutationFn: async ({ id, ...rest }) => axios.patch("/todos", rest, { params: { id } })
+})
+
+export const useDeleteTodo = () => useMutation<void, string, DeleteTodoType>({
+    mutationFn: async (props) => axios.delete("/todos", { params: props })
 })

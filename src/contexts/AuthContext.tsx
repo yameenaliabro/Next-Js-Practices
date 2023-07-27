@@ -1,3 +1,4 @@
+import { Splash } from "@src/components";
 import { firebaseAuth } from "@src/services";
 import { AuthContextType, LoginProps, SignupProps } from "@src/types";
 import { removeAxiosToken, setaxiostoken } from "@src/utils/axios";
@@ -46,14 +47,13 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const checkAuth = useCallback(() => {
         onAuthStateChanged(firebaseAuth, async (_user) => {
-            console.log("🚀 ~ file: AuthContext.tsx:48 ~ onAuthStateChanged ~ _user:", _user)
             setLoading(true)
             setUser(_user)
             setIsAuthenticated(!!_user)
             if (_user) {
 
                 const _token = await _user?.getIdToken();
-                if(_token){
+                if (_token) {
                     setaxiostoken(_token)
                 }
                 setToken(_token)
@@ -86,7 +86,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     return (
         <AuthContext.Provider value={value}>
-            {loading ? <h1>Loading...</h1> : children}
+            {loading ? <Splash /> : children}
         </AuthContext.Provider>
     )
 

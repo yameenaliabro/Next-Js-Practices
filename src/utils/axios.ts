@@ -4,8 +4,6 @@ import { message } from "antd";
 
 const axios = Axios.create({
     baseURL: BASE_URL
-
-
 })
 
 axios.interceptors.response.use(

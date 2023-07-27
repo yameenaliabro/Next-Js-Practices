@@ -14,6 +14,10 @@ function DashboardSideBar() {
         {
             label: <Link href="/dashboard/todos">Todos</Link>,
             key: "dashboard-todos"
+        },
+        {
+            label: <Link href="/dashboard/todos/main">main</Link>,
+            key: "dashboard-todos/main"
         }
     ]), [])
 
