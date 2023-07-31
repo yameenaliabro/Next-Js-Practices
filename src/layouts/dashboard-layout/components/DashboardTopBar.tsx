@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
-import { Avatar, Button, Dropdown, Layout, MenuProps, Typography } from 'antd';
+import { Avatar, Dropdown, Layout, MenuProps, Typography } from 'antd';
 import { useAuth } from '@src/hooks';
-import { UserOutlined } from '@ant-design/icons';
 
 const { Header } = Layout
 

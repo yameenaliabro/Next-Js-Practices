@@ -17,7 +17,7 @@ function DashboardLayout(props: DashboardLayoutProps) {
             <DashboardTopBar />
             <Layout>
                 <DashboardSideBar />
-                <Content>
+                <Content className='overflow-y-auto'>
                     {children}
                 </Content>
             </Layout>
@@ -33,4 +33,4 @@ const WithAuth = (props: DashboardLayoutProps) => {
     )
 }
 
-export default WithAuth
+export default WithAuth 

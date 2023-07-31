@@ -13,7 +13,8 @@ type TodoItemProps = {
 
 function TodoItem(props: TodoItemProps) {
     const { item, onDelete, onEdit, onToggleComplete } = props
-    const { title, description, createdAt, completed, _id } = item
+    console.log(item)
+    const { title, description, completed, _id } = item
 
     const actionItems: MenuProps["items"] = useMemo(() => ([
         { label: "Edit", key: "edit", onClick: () => onEdit(item), disabled: completed },
@@ -43,7 +44,7 @@ function TodoItem(props: TodoItemProps) {
                 }
                 title={
                     <Link
-                        href={`/dashboard/todos/${_id}`}
+                        href={`/dashboard/todo/${_id}`}
                         className={completed ? "line-through" : ""}
                     >
                         {title}

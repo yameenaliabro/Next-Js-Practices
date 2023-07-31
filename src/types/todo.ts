@@ -4,7 +4,6 @@ export interface ITodo {
     title: string;
     description: string;
     completed: boolean;
-    createdAt: string;
     updatedAt: string;
 }
 
@@ -12,7 +11,7 @@ export type GetTodoDetailType = {
     id?: string
 }
 
-export type CreateTodosType = {
+export type CreateTodoType = {
     title: string
     description?: string
 }

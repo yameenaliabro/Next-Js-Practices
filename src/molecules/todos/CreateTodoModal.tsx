@@ -1,10 +1,10 @@
-import { CreateTodosType, EditTodoType, ITodo } from '@src/types/todo'
+import { CreateTodoType, EditTodoType, ITodo } from '@src/types/todo'
 import { Form, Input, Modal } from 'antd'
 import React, { Ref, forwardRef, useCallback, useImperativeHandle, useState } from 'react'
 
 type CreateTodoModalProps = {
     createLoading: boolean
-    onCreateTodo: (props: CreateTodosType) => Promise<void>
+    onCreateTodo: (props: CreateTodoType) => Promise<void>
     onEditTodo: (props: EditTodoType) => Promise<void>
 }
 
@@ -16,7 +16,7 @@ export type CreateTodoModalRefProps = {
 function CreateTodoModal(props: CreateTodoModalProps, ref: Ref<CreateTodoModalRefProps>) {
     const { onCreateTodo, createLoading, onEditTodo } = props
     const [form] = Form.useForm()
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
     const [editTodo, setEditTodo] = useState<ITodo | null>(null);
 
     const onCancel = useCallback(() => {
@@ -25,7 +25,7 @@ function CreateTodoModal(props: CreateTodoModalProps, ref: Ref<CreateTodoModalRe
         setOpen(false)
     }, [form])
 
-    const onFinish = useCallback(async (v: CreateTodosType) => {
+    const onFinish = useCallback(async (v: CreateTodoType) => {
         console.log("🚀 ~ file: CreateTodoModal.tsx:29 ~ onFinish ~ v:", v)
         if (editTodo) {
             await onEditTodo({ id: editTodo._id, ...v })
@@ -57,7 +57,13 @@ function CreateTodoModal(props: CreateTodoModalProps, ref: Ref<CreateTodoModalRe
                 <Form.Item name="title" rules={[{ required: true, message: "Please add Title!" }]}>
                     <Input placeholder='Title' />
                 </Form.Item>
-                <Form.Item name="description">
+                <Form.Item name="description" rules={[
+                    {
+                        required: true, message: "Please add description"
+                    },
+                    {
+                        min: 10, message: "Please enter a minimum 10 character"
+                    }]}>
                     <Input.TextArea rows={4} placeholder='Description' />
                 </Form.Item>
             </Form>

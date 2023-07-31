@@ -17,6 +17,7 @@ axios.interceptors.response.use(
 
 export const setaxiostoken = (token: string) => {
     axios.defaults.headers.Authorization = `Bearer ${token}`
+    console.log(token)
 }
 export const removeAxiosToken = () => {
     axios.defaults.headers.Authorization = null

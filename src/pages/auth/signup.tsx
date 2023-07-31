@@ -13,14 +13,14 @@ function SignUppage() {
     const onFinish = async (props: SignupProps) => {
         try {
             setLoading(true)
-            await signup(props)   
+            await signup(props)
             if (asPath === "/auth/signup") {
                 push("/dashboard")
             }
             message.success("your account is sucessfull created")
         } catch (error) {
-            
-        }finally{
+
+        } finally {
             setLoading(false)
         }
     }

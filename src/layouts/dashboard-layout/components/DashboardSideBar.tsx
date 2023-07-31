@@ -11,18 +11,10 @@ function DashboardSideBar() {
             label: <Link href="/dashboard">Dashboard</Link>,
             key: "dashboard"
         },
-        {
-            label: <Link href="/dashboard/todos">Todos</Link>,
-            key: "dashboard-todos"
-        },
-        {
-            label: <Link href="/dashboard/todos/main">main</Link>,
-            key: "dashboard-todos/main"
-        }
     ]), [])
 
     return (
-        <Sider>
+        <Sider className='h-full'>
             <Menu theme='dark' items={menuItems} />
         </Sider>
     )

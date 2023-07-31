@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { useCreateTodo, useDeleteTodo, useEditTodo, UseGetTodos } from '@src/apis'
 import { CenterWrapper } from "@src/components";
 import { CreateTodoModal, CreateTodoModalRefProps, TodoItem } from '@src/molecules';
-import { CreateTodosType, EditTodoType, ITodo } from '@src/types/todo';
+import { CreateTodoType, EditTodoType, ITodo } from '@src/types/todo';
 
 function TodosPage() {
   const { data, isLoading, refetch } = UseGetTodos()
@@ -13,7 +13,7 @@ function TodosPage() {
   const { mutateAsync: editTodo, isLoading: updateLoading } = useEditTodo()
   const { mutateAsync: deleteTodo } = useDeleteTodo()
 
-  const onCreateTodo = useCallback(async (v: CreateTodosType) => {
+  const onCreateTodo = useCallback(async (v: CreateTodoType) => {
     await createTodo(v, {
       onSuccess: () => {
         refetch()

@@ -1,4 +1,4 @@
-import { CreateTodosType, DeleteTodoType, EditTodoType, GetTodoDetailType, ITodo } from "@src/types/todo"
+import { CreateTodoType, DeleteTodoType, EditTodoType, GetTodoDetailType, ITodo } from "@src/types/todo"
 import axios from "@src/utils/axios"
 import { useMutation, useQuery } from "@tanstack/react-query"
 
@@ -15,7 +15,7 @@ export const UseGetTodoDetail = (props?: GetTodoDetailType) => {
     })
 }
 
-export const useCreateTodo = () => useMutation<void, string, CreateTodosType>({
+export const useCreateTodo = () => useMutation<void, string, CreateTodoType>({
     mutationFn: async (props) => axios.post("/todos", props)
 })
 
